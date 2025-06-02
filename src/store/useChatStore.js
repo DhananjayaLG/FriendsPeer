@@ -13,8 +13,11 @@ export const useChatStore = create((set) => ({
       profilePhoto: null,
       friendProfilePhoto: null,
       myName: '',
+      seenPosts: [],
       isLoggedIn:false,
       dataChannel:{},
+      addSeenPosts: (msg) => set((state) => ({ seenPosts: [msg, ...state.seenPosts] })),
+      resetSeenPosts: () => set({ seenPosts: [] }),
       setMyDataChannel: (dataChannel) => {
         console.log('Setting dataChannel:', dataChannel);
         set({ dataChannel });

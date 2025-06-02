@@ -213,7 +213,7 @@ const handlePressAddPost = () => {
                         {friends.length > 0 ? 
                         <ScrollView horizontal showsHorizontalScrollIndicator={false} className=''>
                           {friends.map((user,index)=>(
-                                  <TouchableOpacity key={index} className='m-2' onPress={() => navigation.navigate('JoinedRoomScreen',{friendId:user.id,friendName:user.name,seenPosts:[]})}>
+                                  <TouchableOpacity key={index} className='m-2' onPress={() => navigation.navigate('JoinedRoomScreen',{friendId:user.id,friendName:user.name})}>
                                       <UserProfile key={index} user={user.name} id={user.id} onDelete={handleDelete} profile={user.profile} />
                                   </TouchableOpacity>
                               ))}

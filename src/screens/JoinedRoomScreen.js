@@ -23,9 +23,9 @@ export default function JoinRoomScreen({route}) {
       addFriendPosts,
       resetFriendPosts,
       setFriendProfilePhoto,
-      friendProfilePhoto,roomId,updateFriendProfile
+      friendProfilePhoto,roomId,updateFriendProfile,
+      seenPosts,addSeenPosts,resetSeenPosts
     } = useChatStore();
-  const seenPosts=[]
   const peerConnections = useRef({});
   const dataChannels = useRef({});
   const isHostRef = useRef(false);
@@ -35,6 +35,7 @@ export default function JoinRoomScreen({route}) {
     //console.log("myId=",myId)
       //await remove(ref(db, `signals/${friendId}/${roomId}`)).catch(() => {});
       resetFriendPosts()
+      resetSeenPosts()
       setIsHost(false);
       isHostRef.current = false;
       setJoinedRoom(friendId);
@@ -112,6 +113,24 @@ export default function JoinRoomScreen({route}) {
             <Poster poster={m} type="friend" name={friendName} dataChannel={dataChannels.current['host']} />
             </View>
         ))}
+        {/* {friendPosts.map((m, i) => {
+          if (seenPosts.includes(m.postId)) return null;
+
+          seenPosts.push(m.postId);
+          console.log("m =", seenPosts);
+
+          return (
+            <View key={i}>
+              <Poster
+                poster={m}
+                type="friend"
+                name={friendName}
+                dataChannel={dataChannels.current['host']}
+              />
+            </View>
+          );
+        })} */}
+
         </ScrollView>
     </ScrollView>
   )

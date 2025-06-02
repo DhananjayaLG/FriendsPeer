@@ -17,7 +17,7 @@ import {
 dayjs.extend(relativeTime);
 
 const Poster = ({poster,type,name,dataChannel}) => {
-    console.log("Poster=",poster);
+    //console.log("Poster=",poster);
     const isPostLikedByMe = (likedBy, myId) => {
         if(likedBy){
             return likedBy.includes(myId);
@@ -33,9 +33,10 @@ const Poster = ({poster,type,name,dataChannel}) => {
     //console.log("friendprofile",friendProfilePhoto)
     const [localLikeCount,setLocalLikeCount]=useState(0)
     useEffect(()=>{
+        //console.log(poster.postId)
         setLiked(isPostLikedByMe(poster.likedBy, roomId))
-        setLocalLikeCount(`${poster.likedBy? poster.likedBy.length:0}`)
-    },[])
+        setLocalLikeCount(poster.likedBy? poster.likedBy.length:0)
+    },[poster.postId])
     const addLike=async()=>{
         await addLikedByToPost(poster.postId,roomId)
         const postsNew=await getPosts()
